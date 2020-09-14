@@ -1,9 +1,19 @@
 import React from 'react'
+import s from './Search.module.css'
+import { Input } from 'antd'
 
-export const Search = () => {
+
+const { Search } = Input;
+
+export const Searchh = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <Search
+                className={s.search}
+                placeholder="input search text"
+                onSearch={value => console.log(value)}
+                onChange={value => console.log(value)}
+            />
+        </>
     )
 }
