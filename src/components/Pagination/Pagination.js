@@ -4,15 +4,19 @@ import { Pagination } from 'antd'
 
 
 
-export const Paginationn = ({pokeCount}) => {
+export const Paginationn = ({pokeCount, onShowSizeChange, onChange}) => {
     return (
         <div className={s.container}>
             <Pagination
-            total={pokeCount}
-            onShowSizeChange={onShowSizeChange}
+                showSizeChanger
+                pageSizeOptions={[10,20,50,100]}
+                defaultPageSize={20}
+                defaultCurrent={1}
+                total={pokeCount}
+                onShowSizeChange={onShowSizeChange}
+                onChange={onChange}
             showTotal={(pokeCount, range) => `${range[0]}-${range[1]} of ${pokeCount} items`}
-            defaultPageSize={20}
-            defaultCurrent={1}
+            
             />
         </div>
     )
