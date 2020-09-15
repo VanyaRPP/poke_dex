@@ -1,5 +1,7 @@
 import axios from 'axios'
 import React, { useState, useEffect} from 'react'
+import PokeCard from '../PokeCard/PokeCard'
+import { PokeList } from '../PokeList/PokeList'
 
 export const PokePage = ({setpokeCount, page_Number, page_Size,Url }) => {
 
@@ -62,18 +64,13 @@ useEffect(() => {
     return () => cancel()
 }, [Url])
 
-    return (
+return (
 //        console.log(props.pokeCount),
-        <div>
-            {
-                Pokemons.map(
-                    p=>(
-                        <li key={p}>
-                            {p}
-                        </li>
-                    )
-                )
-            }
-        </div>
-    )
+  <div>
+    <PokeList 
+      Pokemons={Pokemons}
+      //search={search}
+    />
+  </div>
+  )
 }

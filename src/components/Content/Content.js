@@ -7,7 +7,7 @@ export const Content = () => {
 
     const [pokeCount, setpokeCount] = useState()
     const [page_Size, setpage_Size] = useState(20)
-    const [page_Number, setpage_Number] = useState()
+    const [page_Number, setpage_Number] = useState(0)
     const [Url, setUrl] = useState(`https://pokeapi.co/api/v2/pokemon?limit=${page_Size}&offset=${page_Number}`)
 
     useEffect(() => {
@@ -15,7 +15,7 @@ export const Content = () => {
     });
 
 function onChange(pageNumber) {
-    console.log('Page: ', pageNumber);
+    console.log('Page: ', pageNumber)
     setpage_Number(pageNumber*page_Size)
     console.log('ofset: ', page_Number)
     //setUrl(`https://pokeapi.co/api/v2/pokemon?limit=${page_Size-1}&offset=${page_Number}`)

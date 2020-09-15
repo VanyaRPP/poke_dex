@@ -8,7 +8,7 @@ export const Paginationn = ({pokeCount, onShowSizeChange, onChange}) => {
     return (
         <div className={s.container}>
             <Pagination
-                defaultCurrent={0}
+                defaultCurrent={1}
                 showSizeChanger
                 pageSizeOptions={[10,20,50,100]}
                 defaultPageSize={20}
