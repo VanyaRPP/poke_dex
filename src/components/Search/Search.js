@@ -1,19 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
 import s from './Search.module.css'
 import { Input } from 'antd'
 
 
-const { Search } = Input;
+export const Searchh = ({ setSearch }) => {
 
-export const Searchh = () => {
     return (
-        <>
-            <Search
+        <div className={s.container}>
+            <Input
                 className={s.search}
-                placeholder="input search text"
-                onSearch={value => console.log(value)}
-                onChange={value => console.log(value)}
+                placeholder="Search Pokemon"
+                onChange={
+                    e=>(
+                        setSearch(e.target.value)
+                    )
+                }
             />
-        </>
+        </div>
     )
 }

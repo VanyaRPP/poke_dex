@@ -1,46 +1,85 @@
+import { BackTop, Collapse } from 'antd'
+import CollapsePanel from 'antd/lib/collapse/CollapsePanel'
 import React, { useState, useEffect } from 'react'
 import { Paginationn } from '../Pagination/Pagination'
 import { PokePage } from '../PokePage/PokePage'
 import { Searchh } from '../Search/Search'
+import { SelectorType } from '../SelectType/SelectType'
 
 export const Content = () => {
 
     const [pokeCount, setpokeCount] = useState()
     const [page_Size, setpage_Size] = useState(20)
     const [page_Number, setpage_Number] = useState(0)
+    const [search, setSearch] = useState('')
+    const [Type, setType] = useState(false)
+    const [TypeUrl, setTypeUrl] = useState('')
     const [Url, setUrl] = useState(`https://pokeapi.co/api/v2/pokemon?limit=${page_Size}&offset=${page_Number}`)
 
     useEffect(() => {
-        setUrl(`https://pokeapi.co/api/v2/pokemon?limit=${page_Size}&offset=${page_Number}`)
+        Type?
+        setUrl(TypeUrl):search===''?
+        setUrl(`https://pokeapi.co/api/v2/pokemon?limit=${page_Size}&offset=${page_Number}`):
+        setUrl('https://pokeapi.co/api/v2/pokemon?limit=1050&offset=0')
     });
 
-function onChange(pageNumber) {
-    console.log('Page: ', pageNumber)
-    setpage_Number(pageNumber*page_Size)
-    console.log('ofset: ', page_Number)
-    //setUrl(`https://pokeapi.co/api/v2/pokemon?limit=${page_Size-1}&offset=${page_Number}`)
-}
 function onShowSizeChange(current, pageSize) {
     setpage_Size(pageSize)
-    console.log(current, pageSize)
-    console.log(page_Size)
-    //setUrl(`https://pokeapi.co/api/v2/pokemon?limit=${page_Size-1}&offset=${page_Number}`)
+}
+function onChange(pageNumber) {
+    setpage_Number(pageNumber === 1 ? 0 :pageNumber*page_Size)
+}
+function ontypeClick(value){
+    setType(true)
+    setTypeUrl(value)
+}
+function onclearTypeClick(){
+    setType(false)
 }
 
     return (
         <div>
-            <Searchh/>
+            <Searchh
+            setSearch={setSearch}
+            />
+            
+            <Collapse ghost style={{ borderRadius:'20px',border:'2px solid violet'}}>
+                <CollapsePanel
+                header="Select Poke Type"
+                key="1"
+                >
+                    <SelectorType
+                    ontypeClick={ontypeClick}
+                    onclearTypeClick={onclearTypeClick}
+                    />
+                </CollapsePanel>
+            </Collapse>
+            {Type?null:
+                <Paginationn
+                    pokeCount={pokeCount}
+                    onChange={onChange}
+                    onShowSizeChange={onShowSizeChange}
+                />
+            }
+            
             <PokePage
             setpokeCount={setpokeCount}
             page_Size={page_Size}
             page_Number={page_Number}
             Url={Url}
+            Type={Type}
+            search={search}
             />
-            <Paginationn
-            pokeCount={pokeCount}
-            onChange={onChange}
-            onShowSizeChange={onShowSizeChange}
-            />
+            {Type?null:
+                <Paginationn
+                    pokeCount={pokeCount}
+                    onChange={onChange}
+                    onShowSizeChange={onShowSizeChange}
+                />
+            }
+            <BackTop>
+                <p>Up</p>
+            </BackTop>
         </div>
     )
 }

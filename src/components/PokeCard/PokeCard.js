@@ -60,9 +60,12 @@ export default function PokeCard({p}) {
 
 
   return (
-  //console.log(PokeStatsName),
-
-    <div className={s.pokecard} onClick={
+    <div 
+    style={{
+      fontFamily:'Ranchers'
+    }}
+    className={s.pokecard}
+    onClick={
       ()=>{
       render(
         <PokeInfoModal

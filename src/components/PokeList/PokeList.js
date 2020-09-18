@@ -6,17 +6,17 @@ export const PokeList = ({Pokemons, search}) => {
   return (
     <div className={s.grid}>
       {
-        Pokemons.map(filteredName => (
-          <div key={filteredName}>
-            <PokeCard key={filteredName} p={filteredName}/>
-          </div>
-        ))
-      }
-      {/*
       Pokemons.filter(name => name.includes(search)).map(filteredName => (
         <div key={filteredName}>
           <PokeCard key={filteredName} p={filteredName}/>
         </div>
+        ))
+      }
+      {/*
+        Pokemons.map(filteredName => (
+          <div key={filteredName}>
+            <PokeCard key={filteredName} p={filteredName}/>
+          </div>
         ))
       */}
     </div>

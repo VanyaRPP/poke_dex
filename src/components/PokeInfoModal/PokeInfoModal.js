@@ -1,27 +1,26 @@
 import React, { useState } from 'react';
 import s from './stylePokeInfoModal.module.css'
-import { Modal,Progress } from 'antd';
+import { Modal, Progress } from 'antd';
 
 
 export default function PokeInfoModal({ pName, pType, TYPE_COLORS, pImg, PokeAbilities, PokeHeight, PokeBaseStats, PokeStatsName}){
   const [visible, setvisible] = useState(true)
-/*
-function handleOk(){
-  setvisible(false)
-}*/
+
 function handleCancel(){
   setvisible(false)
 }
     return (
-      //console.log(PokeStatsName),
       <>
         <Modal
           width={700}
           title={pName}
           visible={visible}
-          //onOk={handleOk}
           onCancel={handleCancel}
           footer={null}
+          style={{
+            fontFamily:'Ranchers, cursive',
+            fontSize:'40px'
+          }}
         >
           <div className={s.content}>
             <div className={ s.imgAndStats }>
@@ -37,7 +36,6 @@ function handleCancel(){
                   status={"normal"}
                   />
                 </div>
-                
                 <div style={{display:'flex',justifyContent:'space-between'}}>
                   <div style={{minWidth:'90px', display:'flex', flexDirection: 'column',justifyContent:'space-between' }}>
                     {PokeStatsName.map(psn=>(
@@ -71,6 +69,5 @@ function handleCancel(){
         </Modal>
       </>
     );
-
 }
 

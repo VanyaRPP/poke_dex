@@ -1,76 +1,38 @@
+import { Spin } from 'antd'
 import axios from 'axios'
 import React, { useState, useEffect} from 'react'
 import PokeCard from '../PokeCard/PokeCard'
 import { PokeList } from '../PokeList/PokeList'
 
-export const PokePage = ({setpokeCount, page_Number, page_Size,Url }) => {
+export const PokePage = ({ setpokeCount, Url, search, Type }) => {
 
-    //const [Url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/')
     const [Pokemons, setPokemons] = useState([])
     const [Loading, setLoading] = useState(true)
 
-
-    
-
-/*useEffect(() => {
-    setUrl(`https://pokeapi.co/api/v2/pokemon?limit=${page_Size}&offset=${page_Number}`)
-    const fetchPokemon = async () => {
-        /****************
-        let cancel
-    axios.get(Url, {
-    canselToken: new axios.CancelToken( c => cancel = c )})
-    .then(
-        res=>{
-            setpokeCount(res.data.count)
-            setPokemons(res.data.results.map(p => p.name))
-        }
-    )
-    return () => cancel()
-}
-*
-        let cancel
-        axios.get(Url, {
-        canselToken: new axios.CancelToken( c => cancel = c )})
-        .then(
-            res=>{
-            setpokeCount(res.data.count)
-            setPokemons(res.data.results.map(p => p.name))
-            )
-        }
-    }
-    fetchPokemon()
-}, [])*/
-
-//setUrl('https://pokeapi.co/api/v2/pokemon?limit='+page_Size+'&offset='+page_Number)
-
 useEffect(() => {
-    //setUrl(`https://pokeapi.co/api/v2/pokemon?limit=${page_Size}&offset=${page_Number}`)
-    setLoading(true)
+    setLoading(false)
     let cancel
     axios.get(Url, {
     canselToken: new axios.CancelToken( c => cancel = c )})
     .then(
         res=>{
-            setpokeCount(res.data.count)
+            Type?
+            setPokemons(res.data.pokemon.map(p => p.pokemon.name))
+            :
             setPokemons(res.data.results.map(p => p.name))
-        /*setLoading(false)
-        setNextPageUrl(res.data.next)
-        setPrevPageUrl(res.data.previous)
-        TypeFiltre?
-        setPokemons(res.data.results.map(p => p.name))
-        :setPokemons(res.data.pokemon.map(p => p.pokemon.name))*/
+            setpokeCount(res.data.count)
         }
     )
     return () => cancel()
 }, [Url])
 
+if (Loading) return <Spin size="large"/>
 return (
-//        console.log(props.pokeCount),
-  <div>
+<div>
     <PokeList 
-      Pokemons={Pokemons}
-      //search={search}
+        Pokemons={Pokemons}
+        search={search}
     />
-  </div>
-  )
+</div>
+)
 }
