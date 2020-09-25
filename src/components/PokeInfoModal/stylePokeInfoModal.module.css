@@ -1,4 +1,3 @@
-
 .content{
 width: auto;
 }
@@ -11,4 +10,21 @@ width: auto;
     max-width: 250px;
     display: flex;
     margin: 0 auto;
+}
+.div_stats{
+    display: flex;
+    justify-content: space-between;
+}
+.stn{
+    min-width: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.p_type{
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    font-size: 25px;
+    margin: 0;
 }

@@ -4,40 +4,40 @@ import { Modal, Progress } from 'antd';
 
 
 export default function PokeInfoModal({ pName, pType, TYPE_COLORS, pImg, PokeAbilities, PokeHeight, PokeBaseStats, PokeStatsName}){
+  
   const [visible, setvisible] = useState(true)
 
-function handleCancel(){
-  setvisible(false)
-}
-    return (
-      <>
-        <Modal
-          width={700}
-          title={pName}
-          visible={visible}
-          onCancel={handleCancel}
-          footer={null}
-          style={{
-            fontFamily:'Ranchers, cursive',
-            fontSize:'40px'
-          }}
-        >
-          <div className={s.content}>
-            <div className={ s.imgAndStats }>
-              <div className={s.imgDiv}>
-                <img src={pImg} style={{height:`219px`}}/>
+  function handleCancel(){
+    setvisible(false)
+  }
+  return(
+    <Modal
+      width={700}
+      title={pName}
+      visible={visible}
+      onCancel={handleCancel}
+      footer={null}
+      style={{
+        fontFamily:'Ranchers, cursive',
+        fontSize:'40px'
+      }}
+    >
+      <div className={s.content}>
+        <div className={ s.imgAndStats }>
+          <div className={s.imgDiv}>
+            <img src={pImg} style={{height:`219px`}}/>
+          </div>
+          <div className={s.statsDiv}>
+            <div>
+              <Progress
+                trailColor='violet'
+                strokeLinecap="square" type="dashboard"
+                percent={PokeHeight*2} format={percent => `${PokeHeight/10} m`}
+                status={"normal"}
+              />
               </div>
-              <div className={s.statsDiv}>
-                <div>
-                  <Progress
-                  trailColor='violet'
-                  strokeLinecap="square" type="dashboard"
-                  percent={PokeHeight*2} format={percent => `${PokeHeight/10} m`}
-                  status={"normal"}
-                  />
-                </div>
-                <div style={{display:'flex',justifyContent:'space-between'}}>
-                  <div style={{minWidth:'90px', display:'flex', flexDirection: 'column',justifyContent:'space-between' }}>
+                <div className={s.div_stats}>
+                  <div className={s.stn}>
                     {PokeStatsName.map(psn=>(
                       <p style={{fontSize:'13px', margin:'0'}}>
                         {psn}
@@ -46,28 +46,27 @@ function handleCancel(){
                     }
                   </div>
                   <div>
-                  {PokeBaseStats.map(pbs=>(
-                  <Progress 
-                    trailColor='violet'
-                    percent={pbs/2} format={percent => `${pbs}`}
-                    status={"normal"}
-                  />
-                  ))
-                  }
+                    {PokeBaseStats.map(pbs=>(
+                    <Progress 
+                      trailColor='violet'
+                      percent={pbs/2} format={percent => `${pbs}`}
+                      status={"normal"}
+                    />
+                    ))
+                    }
                   </div>
                 </div>
-              </div>
-            </div>
-            <div>
-            {pType.map(pot => (
-              <p style={{background: `#${TYPE_COLORS[pot]}`, color: `#fff`, padding:'5px', textAlign:'center', fontSize:'25px', margin:'0'}}>
-                {pot}
-              </p>
-            ))}
-            </div> 
           </div>
-        </Modal>
-      </>
-    );
+        </div>
+        <div>
+              {pType.map(pot => (
+                <p className={s.p_type} style={{background: `#${TYPE_COLORS[pot]}`}}>
+                  {pot}
+                </p>
+              ))}
+        </div> 
+      </div>
+  </Modal>
+  );
 }
 
