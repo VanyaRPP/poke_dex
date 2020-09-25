@@ -1,6 +1,6 @@
+import React, { useState, useEffect } from 'react'
 import { BackTop, Collapse } from 'antd'
 import CollapsePanel from 'antd/lib/collapse/CollapsePanel'
-import React, { useState, useEffect } from 'react'
 import { Paginationn } from '../Pagination/Pagination'
 import { PokePage } from '../PokePage/PokePage'
 import { Searchh } from '../Search/Search'
@@ -18,12 +18,12 @@ export const Content = () => {
 
     useEffect(() => {
         Type?
-        setUrl(TypeUrl):search===''?
-        setUrl(`https://pokeapi.co/api/v2/pokemon?limit=${page_Size}&offset=${page_Number}`):
+        setUrl(TypeUrl):
+        search===''?setUrl(`https://pokeapi.co/api/v2/pokemon?limit=${page_Size}&offset=${page_Number}`):
         setUrl('https://pokeapi.co/api/v2/pokemon?limit=1050&offset=0')
-    });
+    })
 
-function onShowSizeChange(current, pageSize) {
+function onShowSizeChange(pageSize) {
     setpage_Size(pageSize)
 }
 function onChange(pageNumber) {
@@ -39,15 +39,9 @@ function onclearTypeClick(){
 
     return (
         <div>
-            <Searchh
-            setSearch={setSearch}
-            />
-            
+            <Searchh setSearch={setSearch}/>
             <Collapse ghost style={{ borderRadius:'20px',border:'2px solid violet'}}>
-                <CollapsePanel
-                header="Select Poke Type"
-                key="1"
-                >
+                <CollapsePanel header="Select Poke Type" key="1">
                     <SelectorType
                     ontypeClick={ontypeClick}
                     onclearTypeClick={onclearTypeClick}
@@ -61,7 +55,6 @@ function onclearTypeClick(){
                     onShowSizeChange={onShowSizeChange}
                 />
             }
-            
             <PokePage
             setpokeCount={setpokeCount}
             page_Size={page_Size}
@@ -70,13 +63,6 @@ function onclearTypeClick(){
             Type={Type}
             search={search}
             />
-            {Type?null:
-                <Paginationn
-                    pokeCount={pokeCount}
-                    onChange={onChange}
-                    onShowSizeChange={onShowSizeChange}
-                />
-            }
             <BackTop>
                 <p>Up</p>
             </BackTop>

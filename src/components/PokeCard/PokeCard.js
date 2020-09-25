@@ -88,14 +88,14 @@ export default function PokeCard({p}) {
               </p>
             </div>
             <div className={s.nameDiv}>
-              {PokeName}
+              {PokeName.toUpperCase()}
             </div>
           </div>
             <img src={PokeImg}/>
               {PokeType.map(pot => (
               <div className={s.typeDiv} key={pot}>
                 <p style={{color: `#${TYPE_COLORS[pot]}`}}>
-                  {pot}
+                  {pot.toUpperCase()}
                 </p>
               </div>
               ))}

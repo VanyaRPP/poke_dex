@@ -12,7 +12,7 @@ export const Searchh = ({ setSearch }) => {
                 placeholder="Search Pokemon"
                 onChange={
                     e=>(
-                        setSearch(e.target.value)
+                        setSearch(e.target.value.toLowerCase())
                     )
                 }
             />
