@@ -7,7 +7,7 @@ export default function PokeInfoModal({ pName, pType, TYPE_COLORS, pImg, PokeAbi
   
   const [visible, setvisible] = useState(true)
 
-  function handleCancel(){
+  const handleCancel=()=>{
     setvisible(false)
   }
   return(
@@ -17,10 +17,7 @@ export default function PokeInfoModal({ pName, pType, TYPE_COLORS, pImg, PokeAbi
       visible={visible}
       onCancel={handleCancel}
       footer={null}
-      style={{
-        fontFamily:'Ranchers, cursive',
-        fontSize:'40px'
-      }}
+      className={s.modal_m}
     >
       <div className={s.content}>
         <div className={ s.imgAndStats }>
@@ -39,7 +36,7 @@ export default function PokeInfoModal({ pName, pType, TYPE_COLORS, pImg, PokeAbi
                 <div className={s.div_stats}>
                   <div className={s.stn}>
                     {PokeStatsName.map(psn=>(
-                      <p style={{fontSize:'13px', margin:'0'}}>
+                      <p className={s.p_psn}>
                         {psn}
                       </p>
                     ))
@@ -47,12 +44,11 @@ export default function PokeInfoModal({ pName, pType, TYPE_COLORS, pImg, PokeAbi
                   </div>
                   <div>
                     {PokeBaseStats.map(pbs=>(
-                    <Progress 
-                      trailColor='violet'
-                      percent={pbs/2} format={percent => `${pbs}`}
-                      status={"normal"}
-                    />
-                    ))
+                      <Progress 
+                        trailColor='violet'
+                        percent={pbs/2} format={percent => `${pbs}`}
+                        status={"normal"}
+                      />))
                     }
                   </div>
                 </div>

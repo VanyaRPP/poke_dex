@@ -4,7 +4,7 @@ import 'antd/dist/antd.css'
 import { Content } from './components/Content/Content';
 import { Header } from './components/Header/Header';
 
-const App =()=> {
+const App=()=>{
   return (
     <>
       <Header/>

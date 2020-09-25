@@ -1,5 +1,6 @@
 .pokecard{
     border: 2px solid violet;
+    font-family: Ranchers;
     border-radius: 25px;
     width: 150px;
     height: 200px min-content;

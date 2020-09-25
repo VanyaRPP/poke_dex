@@ -23,17 +23,17 @@ export const Content = () => {
         setUrl('https://pokeapi.co/api/v2/pokemon?limit=1050&offset=0')
     })
 
-    function onShowSizeChange(pageSize) {
+    const onShowSizeChange=(pageSize)=>{
         setpage_Size(pageSize)
     }
-    function onChange(pageNumber) {
+    const onChange=(pageNumber)=>{
         setpage_Number(pageNumber === 1 ? 0 :pageNumber*page_Size)
     }
-    function ontypeClick(value){
+    const ontypeClick=(value)=>{
         setType(true)
         setTypeUrl(value)
     }
-    function onclearTypeClick(){
+    const onclearTypeClick=()=>{
         setType(false)
     }
 

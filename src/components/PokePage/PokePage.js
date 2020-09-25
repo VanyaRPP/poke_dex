@@ -11,10 +11,7 @@ export const PokePage = ({ setpokeCount, Url, search, Type }) => {
         axios.get(Url)
         .then(
             res=>{
-                Type?
-                setPokemons(res.data.pokemon.map(p => p.pokemon.name))
-                :
-                setPokemons(res.data.results.map(p => p.name))
+                Type?setPokemons(res.data.pokemon.map(p => p.pokemon.name)):setPokemons(res.data.results.map(p => p.name))
                 setpokeCount(res.data.count)
             }
         )
@@ -22,10 +19,7 @@ export const PokePage = ({ setpokeCount, Url, search, Type }) => {
     if (loading) return <Spin size="large"/>
     return (
         <div>
-            <PokeList 
-                Pokemons={pokemons}
-                search={search}
-            />
+            <PokeList Pokemons={pokemons} search={search}/>
         </div>
     )
 }

@@ -10,11 +10,7 @@ export const Searchh = ({ setSearch }) => {
             <Input
                 className={s.search}
                 placeholder="Search Pokemon"
-                onChange={
-                    e=>(
-                        setSearch(e.target.value.toLowerCase())
-                    )
-                }
+                onChange={e=>(setSearch(e.target.value.toLowerCase()))}
             />
         </div>
     )

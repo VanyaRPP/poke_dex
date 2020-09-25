@@ -32,7 +32,6 @@ export default function PokeCard({p}) {
 
   return (
     <div 
-    style={{fontFamily:'Ranchers'}}
     className={s.pokecard}
     onClick={
       ()=>{
@@ -61,12 +60,12 @@ export default function PokeCard({p}) {
           </div>
           <img src={pokeImg}/>
           {pokeType.map(pot => (
-          <div className={s.typeDiv} key={pot}>
-            <p style={{color: `#${TYPE_COLORS[pot]}`}}>
-              {pot.toUpperCase()}
-            </p>
-          </div>
-      ))}
+            <div className={s.typeDiv} key={pot}>
+              <p style={{color: `#${TYPE_COLORS[pot]}`}}>
+                {pot.toUpperCase()}
+              </p>
+            </div>))
+            }
     </div>
   )
 }
