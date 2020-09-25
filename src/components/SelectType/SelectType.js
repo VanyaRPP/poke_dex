@@ -2,34 +2,11 @@ import React, { useEffect,useState} from 'react'
 import { Button } from 'antd'
 import s from './SelectType.module.css'
 import axios from 'axios'
-
-const TYPE_COLORS = {
-    bug: 'B1C12E',
-    dark: '4F3A2D',
-    dragon: '755EDF',
-    electric: 'FCBC17',
-    fairy: 'F4B1F4',
-    fighting: '823551D',
-    fire: 'E73B0C',
-    flying: 'A3B3F7',
-    ghost: '6060B2',
-    grass: '74C236',
-    ground: 'D3B357',
-    ice: 'A3E7FD',
-    normal: 'C8C4BC',
-    poison: '934594',
-    psychic: 'ED4882',
-    rock: 'B9A156',
-    steel: 'B5B5C3',
-    water: '3295F6',
-    unknown: '00BBCD',
-    shadow: 'B8C0EA'
-};
+import {TYPE_COLORS} from '../TypeColor'
 
 export const SelectorType = ({ ontypeClick, onclearTypeClick }) => {
 	const allTyprURL='https://pokeapi.co/api/v2/type'
-	const [Type, setType] = useState([])
-	
+	const [type, setType] = useState([])
 	useEffect(() => {
 		axios.get(allTyprURL)
 		.then(
@@ -39,30 +16,25 @@ export const SelectorType = ({ ontypeClick, onclearTypeClick }) => {
 		)
 	}, [allTyprURL])
 
-
 	return (
-			<div>
-				<Button
+		<div>
+			<Button
 				className={s.Defolt}
-				onClick={()=>(
-					onclearTypeClick()
-				)}
+				onClick={()=>(onclearTypeClick())}
+			>
+				&times;
+			</Button>
+			{
+			type.map(tName=>(
+				<Button
+					className={s.Defolt}
+					style={{background: `#${TYPE_COLORS[tName.name]}`}}
+					onClick={()=>(ontypeClick(tName.url))}
 				>
-					&times;
+					{tName.name}
 				</Button>
-				{
-					Type.map(tName=>(
-						<Button
-						className={s.Defolt}
-						style={{background: `#${TYPE_COLORS[tName.name]}`}}
-						onClick={()=>(
-							ontypeClick(tName.url)
-						)}
-						>
-							{tName.name}
-						</Button>
-					))
-				}
-			</div>
+			))
+			}
+		</div>
 	)
 }

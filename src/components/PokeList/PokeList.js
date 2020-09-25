@@ -12,13 +12,6 @@ export const PokeList = ({Pokemons, search}) => {
         </div>
         ))
       }
-      {/*
-        Pokemons.map(filteredName => (
-          <div key={filteredName}>
-            <PokeCard key={filteredName} p={filteredName}/>
-          </div>
-        ))
-      */}
     </div>
   )
 }

@@ -7,17 +7,16 @@ import { Searchh } from '../Search/Search'
 import { SelectorType } from '../SelectType/SelectType'
 
 export const Content = () => {
-
     const [pokeCount, setpokeCount] = useState()
     const [page_Size, setpage_Size] = useState(20)
     const [page_Number, setpage_Number] = useState(0)
     const [search, setSearch] = useState('')
-    const [Type, setType] = useState(false)
+    const [type, setType] = useState(false)
     const [TypeUrl, setTypeUrl] = useState('')
     const [Url, setUrl] = useState(`https://pokeapi.co/api/v2/pokemon?limit=${page_Size}&offset=${page_Number}`)
 
     useEffect(() => {
-        Type?
+        type?
         setUrl(TypeUrl):
         search===''?setUrl(`https://pokeapi.co/api/v2/pokemon?limit=${page_Size}&offset=${page_Number}`):
         setUrl('https://pokeapi.co/api/v2/pokemon?limit=1050&offset=0')
@@ -48,7 +47,7 @@ function onclearTypeClick(){
                     />
                 </CollapsePanel>
             </Collapse>
-            {Type?null:
+            {type?null:
                 <Paginationn
                     pokeCount={pokeCount}
                     onChange={onChange}
@@ -60,7 +59,7 @@ function onclearTypeClick(){
             page_Size={page_Size}
             page_Number={page_Number}
             Url={Url}
-            Type={Type}
+            Type={type}
             search={search}
             />
             <BackTop>
