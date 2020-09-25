@@ -24,16 +24,14 @@ export const SelectorType = ({ ontypeClick, onclearTypeClick }) => {
 			>
 				&times;
 			</Button>
-			{
-			type.map(tName=>(
+			{type.map(tName=>(
 				<Button
 					className={s.Defolt}
 					style={{background: `#${TYPE_COLORS[tName.name]}`}}
-					onClick={()=>(ontypeClick(tName.url))}
+					onClick={()=>ontypeClick(tName.url)}
 				>
 					{tName.name}
-				</Button>
-			))
+				</Button>))
 			}
 		</div>
 	)
