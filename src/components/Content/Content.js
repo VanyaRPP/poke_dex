@@ -17,9 +17,7 @@ export const Content = () => {
     const [url, setUrl] = useState(`https://pokeapi.co/api/v2/pokemon?limit=${page_Size}&offset=${page_Number}`)
 
     useEffect(() => {
-        type?
-        setUrl(typeUrl):
-        search===''?setUrl(`https://pokeapi.co/api/v2/pokemon?limit=${page_Size}&offset=${page_Number}`):
+        type?setUrl(typeUrl):search===''?setUrl(`https://pokeapi.co/api/v2/pokemon?limit=${page_Size}&offset=${page_Number}`):
         setUrl('https://pokeapi.co/api/v2/pokemon?limit=1050&offset=0')
     })
 
